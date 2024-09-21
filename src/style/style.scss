@@ -21,6 +21,10 @@ body{
     text-align: center;
     width: 200px;
 }
+
+.product-img{
+    position: relative;
+}
 .product-img img{
     align-self: center;
     border-radius: 10px;
@@ -34,12 +38,15 @@ body{
     border-radius: 50px;
     background-color: white;
     padding: 14px 35px;
-   left: 44px;
+    left: 20px;
     position: absolute;
-    top: 30%;
-   
+    top: 175px;
     cursor: pointer;
     display: inline-block;
+}
+
+.fa-cart-plus{
+    color: $font-color-primary;
 }
 
 .product-category{
