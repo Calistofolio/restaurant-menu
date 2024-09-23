@@ -1,13 +1,11 @@
 import { Product } from "./product";
 
 export class ShoppingCart {
-    private _products: Product;
-    private _totalValue: number;
+    private _products: Product[] = [];
+    private _totalValue: number = 0;
 
-    constructor(product: Product, totalValue: number) {
-        this._products = product;
-        this._totalValue = totalValue;
-    }
-
-    
+    addToCart(product: Product) {
+        this._totalValue += product.productPrice;
+        this._products.push(product)
+    } 
 }

@@ -14,34 +14,31 @@ export class Product{
         this._productCategory = productCategory;
         this._productImg = productImg;
     }
+
+    
+    public get productPrice(){
+        return this._productPrice;
+    }
     
 
-    addToCart() {
-        const product =  new Product(this._productName, this._productPrice, this._productCategory, this._productImg);
-        product._id = this._id
-        if (!product) return;
-        const shoppingCart = new ShoppingCart(product, product._productPrice)
-
-    }
-
     toHtml(){
-        const product = document.createElement("div");
-        product.className = "product";
-        product.id = this._id;
+        const container = document.createElement("div");
+        container.className = "productContainer";
+        container.id = this._id;
 
         const productImg = `<div class="product-img">
-      <img title= "Product Image" src="/assets/images/image-macaron-desktop.jpg" alt="">
+      <img title= "Product Image" src=${this._productImg} alt="">
       <div class="cart-button" onclick="addToCart()"><i class="fa fa-cart-plus"></i>  Add to cart</div>
     </div>`
 
-    const productInformation = `div Class="product-information">
-        <span class="product-category">Macaron</span>
-        <span class="product-name">Macaron Mix of Five</span>
-        <span class="product-price">8.00</span>
+    const productInformation = `<div class="product-information">
+        <span class="product-category">${this._productCategory}</span>
+        <span class="product-name">${this._productName}</span>
+        <span class="product-price">${this._productPrice}</span>
     </div>
     </div>`
 
-    product.innerHTML += productImg;
+    product.innerHTML = productImg;
     product.innerHTML += productInformation;
 
     document.body.appendChild(product);

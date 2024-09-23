@@ -1,8 +1,4 @@
-
-    $font-color-primary: hsl(14, 86%, 42%);
-    $font-color-secondary: hsl(14, 65%, 9%);
-    $font-color-tertiary: hsl(7, 20%, 60%);
-
+@use"components";
 
 @font-face {
     font-family: "Red Hat Text";
@@ -10,15 +6,20 @@
     format("truetype")
 }
 
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
 body{
     font-family: "Red Hat Text", sans-serif;
     color: $font-color-primary;
-    margin: 0px;
-    padding: 0px;
 }
 .product{
     margin: 20px;
     text-align: center;
+    height: 300px;
     width: 200px;
 }
 
@@ -38,7 +39,8 @@ body{
     border-radius: 50px;
     background-color: white;
     padding: 14px 35px;
-    left: 20px;
+    transform: translate(-50%);
+    width: 170px;
     position: absolute;
     top: 175px;
     cursor: pointer;
@@ -49,24 +51,10 @@ body{
     color: $font-color-primary;
 }
 
-.product-category{
-    color: $font-color-tertiary;
-    font-size: 14px;
-}
-
-.product-name{
-    color: $font-color-secondary;
-    font-weight: 700;
-}
-
-.product-price{
-    font-weight: 600;
-}
-
 .product-information{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
     text-align: start;
     margin-top: 35px;
 }
