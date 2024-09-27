@@ -1,4 +1,5 @@
-@use"components";
+@import "components";
+@import "variables";
 
 @font-face {
     font-family: "Red Hat Text";
@@ -15,46 +16,11 @@
 body{
     font-family: "Red Hat Text", sans-serif;
     color: $font-color-primary;
-}
-.product{
-    margin: 20px;
-    text-align: center;
-    height: 300px;
-    width: 200px;
+    background-color: hsl(20, 50%, 98%);
 }
 
-.product-img{
-    position: relative;
-}
-.product-img img{
-    align-self: center;
-    border-radius: 10px;
-    height: 200px;
-    
-}
-
-.cart-button{
-    border: 1px, rgb(54, 54, 54), solid;
-    color: hsl(14, 65%, 9%);;
-    border-radius: 50px;
-    background-color: white;
-    padding: 14px 35px;
-    transform: translate(-50%);
-    width: 170px;
-    position: absolute;
-    top: 175px;
-    cursor: pointer;
-    display: inline-block;
-}
 
 .fa-cart-plus{
     color: $font-color-primary;
 }
 
-.product-information{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    text-align: start;
-    margin-top: 35px;
-}
