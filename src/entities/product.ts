@@ -6,6 +6,7 @@ export class Product{
     private _productPrice: number;
     private _productCategory: string;
     private _productImg: string;
+    private _quantity: number = 0;
 
     constructor(productName: string, productPrice: number, productCategory: string, productImg: string){
         this._id;
@@ -19,31 +20,42 @@ export class Product{
     public get productPrice(){
         return this._productPrice;
     }
+ 
+    public set quantity(value: number) {
+        this._quantity = value;
+    }
+
+    
+    public get quantity(){
+        return this._quantity;
+    }
+    
+    
     
 
-    toHtml(){
-        const container = document.createElement("div");
-        container.className = "productContainer";
-        container.id = this._id;
+    // toHtml(){
+    //     const container = document.createElement("div");
+    //     container.className = "productContainer";
+    //     container.id = this._id;
 
-        const productImg = `<div class="product-img">
-      <img title= "Product Image" src=${this._productImg} alt="">
-      <div class="cart-button" onclick="addToCart()"><i class="fa fa-cart-plus"></i>  Add to cart</div>
-    </div>`
+    //     const productImg = `<div class="product-img">
+    //   <img title= "Product Image" src=${this._productImg} alt="">
+    //   <div class="cart-button" onclick="addToCart()"><i class="fa fa-cart-plus"></i>  Add to cart</div>
+    // </div>`
 
-    const productInformation = `<div class="product-information">
-        <span class="product-category">${this._productCategory}</span>
-        <span class="product-name">${this._productName}</span>
-        <span class="product-price">${this._productPrice}</span>
-    </div>
-    </div>`
+    // const productInformation = `<div class="product-information">
+    //     <span class="product-category">${this._productCategory}</span>
+    //     <span class="product-name">${this._productName}</span>
+    //     <span class="product-price">${this._productPrice}</span>
+    // </div>
+    // </div>`
 
-    product.innerHTML = productImg;
-    product.innerHTML += productInformation;
+    // product.innerHTML = productImg;
+    // product.innerHTML += productInformation;
 
-    document.body.appendChild(product);
+    // document.body.appendChild(product);
 
-    }
+    // }
 
    
 }
