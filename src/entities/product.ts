@@ -33,29 +33,36 @@ export class Product{
     
     
 
-    // toHtml(){
-    //     const container = document.createElement("div");
-    //     container.className = "productContainer";
-    //     container.id = this._id;
+    toHtml(){
+        const productContainer = document.getElementById("container")
+        
+        if (!productContainer) return;
 
-    //     const productImg = `<div class="product-img">
-    //   <img title= "Product Image" src=${this._productImg} alt="">
-    //   <div class="cart-button" onclick="addToCart()"><i class="fa fa-cart-plus"></i>  Add to cart</div>
-    // </div>`
+        const productHtml = document.createElement("li");
+        productHtml.id = this._id;
 
-    // const productInformation = `<div class="product-information">
-    //     <span class="product-category">${this._productCategory}</span>
-    //     <span class="product-name">${this._productName}</span>
-    //     <span class="product-price">${this._productPrice}</span>
-    // </div>
-    // </div>`
+        productHtml.innerHTML = `<div class="product-container">
+    <div><h1>Desserts</h1></div>
+    <div class="product-img">
+      <img title= "Product Image" src="/assets/images/image-macaron-desktop.jpg" alt="">
+      <div class="cart-button" id = "add-to-cart" onclick="addToCart()"><i class="fa fa-cart-plus"></i>  Add to cart</div>
+    </div> 
 
-    // product.innerHTML = productImg;
-    // product.innerHTML += productInformation;
+    <div Class="product-information">
+      <span class="product-category">Macaron</span>
+      <span class="product-name">Macaron Mix of Five</span>
+      <span class="product-price">8.00</span>
+    </div>
+ </div>`;
 
-    // document.body.appendChild(product);
+    const addToCartBttn = document.querySelector("#add-to-cart");
+    const cart = new ShoppingCart();
 
-    // }
+    addToCartBttn?.addEventListener("click", () => cart.increaseProductCount)
+
+    productContainer.appendChild(productHtml);
+
+    }
 
    
 }

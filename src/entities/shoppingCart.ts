@@ -10,6 +10,8 @@ export class ShoppingCart {
             this._products.push(product)
         }
         
+        this.orderTotal(product);
+        this.toHtml();   
     } 
 
     orderTotal(product: Product){
@@ -18,12 +20,20 @@ export class ShoppingCart {
 
     increaseProductCount(product: Product){
         product.quantity++;
-        this.orderTotal(product)
         this.addToCart(product)
     }
 
     decreaseProductCount(product: Product){
         product.quantity--;
         this.orderTotal(product);
+    }
+
+    toHtml(){
+        const cartContainer = document.getElementById("your-cart");
+        console.log(cartContainer);
+        if (!cartContainer)return;
+            
+        
+        cartContainer.innerHTML = "Testando"
     }
 }
