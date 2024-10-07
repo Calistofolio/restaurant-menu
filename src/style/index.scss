@@ -72,19 +72,20 @@ body{
     
 }
 
-// .cart-button{
-//     border: 1px, rgb(54, 54, 54), solid;
-//     color: hsl(14, 65%, 9%);;
-//     border-radius: 50px;
-//     background-color: white;
-//     padding: 14px 35px;
-//     transform: translate(-50%);
-//     width: 170px;
-//     position: absolute;
-//     top: 175px;
-//     cursor: pointer;
-//     display: inline-block;
-// }
+.button{
+    border: 1px, rgb(54, 54, 54), solid;
+    color: hsl(14, 65%, 9%);;
+    padding: 15px 20px;
+    border-radius: 50px;
+    background-color: white;
+    transform: translate(-50%, 50%);
+    width: 170px;
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    cursor: pointer;
+   
+}
 
 .product-container h1, .product-name-cart, .order-total h2{
     color: $font-color-secondary;
