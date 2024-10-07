@@ -29,31 +29,39 @@ export class Product{
     public get quantity(){
         return this._quantity;
     }
+
+    
+    public get productName(){
+        return this._productName;
+    }
+    
     
     
     
 
     toHtml(){
-        const productContainer = document.getElementById("container")
+        const productContainer = document.getElementById("product-list")
         
         if (!productContainer) return;
 
         const productHtml = document.createElement("li");
         productHtml.id = this._id;
 
-        productHtml.innerHTML = `<div class="product-container">
-    <div><h1>Desserts</h1></div>
-    <div class="product-img">
-      <img title= "Product Image" src="/assets/images/image-macaron-desktop.jpg" alt="">
-      <div class="cart-button" id = "add-to-cart" onclick="addToCart()"><i class="fa fa-cart-plus"></i>  Add to cart</div>
-    </div> 
+        productHtml.innerHTML = `
+        <div class="rounded-xl overflow-hidden flex flex-col border h-[270px] w-[250px]">
+          <div class="mb-10 relative h-full bg-red-500">
+            <div class="">img</div>
+            <button id="button-add-to-cart" type="button" class="button rounded-lg text-white font-medium text-xs bg-red-400">Add to
+              Cart</button>
+          </div>
 
-    <div Class="product-information">
-      <span class="product-category">Macaron</span>
-      <span class="product-name">Macaron Mix of Five</span>
-      <span class="product-price">8.00</span>
-    </div>
- </div>`;
+          <div class="flex flex-col">
+            <span class="product-category">${this._productCategory}</span>
+            <span class="product-name text-xl font-medium">${this._productName}</span>
+            <span class="product-price">$${this._productPrice}</span>
+          </div>
+        </div>
+    `;
 
     const addToCartBttn = document.querySelector("#add-to-cart");
     const cart = new ShoppingCart();
