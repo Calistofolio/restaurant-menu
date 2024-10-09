@@ -47,7 +47,7 @@ export class Product{
         <div class="rounded-xl overflow-hidden flex flex-col border h-[370px] w-[250px] bg-white">
           <div class="mb-10 relative h-full">
             <div class=""><img class="h-[100%]" title = "Product Image" src="${this._productImg}" alt=""></div>
-            <button id="button-add-to-cart" type="button" onclick="addToCart()" class="button rounded-lg font-semibold"> <div class="fa fa-cart-plus px-1"></div>
+            <button id="button-add-to-cart" type="button" class="button rounded-lg font-semibold"> <div class="fa fa-cart-plus px-1"></div>
               Add to Cart</button>
           </div>
 
@@ -59,7 +59,13 @@ export class Product{
         </div>
     `;
 
-    
+    const product = new Product(this._productName, this._productPrice, this._productCategory, this._productImg);
+    const cart = new ShoppingCart();
+
+
+    const addToCartBttn = document.querySelector("#button-add-to-cart");
+    addToCartBttn?.addEventListener("click", () => cart.increaseProductCount(product))
+       
 
     productContainer.appendChild(productHtml);
 

@@ -32,28 +32,44 @@ export class ShoppingCart {
         const cartContainer = document.getElementById("your-cart");
         if (!cartContainer) return;
 
-        const cartHtml = document.createElement("div")
+        const totalQuantityHtml = cartContainer.querySelector("#total-quantity")
+
+        if (!totalQuantityHtml) return;
+        totalQuantityHtml.textContent = this._products[0].quantity.toString();
+
+        let ulProductsHTML = cartContainer.querySelector("ul");
+
+        if (ulProductsHTML) {
+          ulProductsHTML.innerHTML = "";
+        } else {
+          ulProductsHTML = document.createElement("ul");
+        }
+    
+        for (const product of this._products) {
+          const liProductHTML = document.createElement("li");
+    
+
         const cart = new ShoppingCart();
 
-        cartHtml.innerHTML = `<div class="cart-count"><h2>Your Cart (7)</h2></div>
-            <div class="products-in-cart">
-            <div class="product-name-cart">${cart._products[0].productName}</div>
-            <span>1x</span>
-            <span class="unitary-value">@ $${cart._products[0].productPrice}</span>
-            <span class="total-value">$${cart._totalValue}</span>
-            </div>
-            <div class="flex">
-            <div>Order total</div>
-            <h2>$5.50</h2>
-        </div>`
+        for (const product of this._products) {
+            const liProductHTML = document.createElement("li");
+      
+            const productHTML = `
+              <span>${this._products[0].productName}</span>
+              <div>
+                <span>${this._products[0].quantity}x</span>
+                <span>@$${this._products[0].productPrice}</span>
+                <span>$${this._totalValue}</span>
+              </div>
+            `;
+      
+            liProductHTML.innerHTML = productHTML;
+            ulProductsHTML.appendChild(liProductHTML);
+          }
+    
 
 
-
-
-    const addToCartBttn = document.querySelector("#button-add-to-cart");
-    addToCartBttn?.addEventListener("click", () => cart.increaseProductCount(this._products[0]))
-       
-
-        cartContainer.appendChild(cartHtml)
+        cartContainer.appendChild(ulProductsHTML);
+        }
     }
-}
+ }
