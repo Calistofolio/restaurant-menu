@@ -22,7 +22,7 @@ $gray-color-details: hsl(13, 31%, 94%);
 body{
     font-family: "Red Hat Text", sans-serif;
     color: $font-color-primary;
-    background-color: hsl(20, 50%, 98%);
+    background-color: hsl(13, 31%, 94%);
 }
 
 
@@ -41,35 +41,13 @@ body{
     color: $font-color-secondary;
 }
 
-.product-name{
+.product-name, h1{
     color: $font-color-secondary;
     font-weight: 700;
 }
 
 .product-price{
     font-weight: 600;
-}
-
-.product-container{
-    margin: 20px;
-    text-align: center;
-    height: 300px;
-    width: 200px;
-}
-
-.product-information{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    text-align: start;
-    margin-top: 35px;
-}
-
-.product-img img{
-    align-self: center;
-    border-radius: 10px;
-    height: 200px;
-    
 }
 
 .button{
@@ -84,14 +62,10 @@ body{
     bottom: 0px;
     left: 50%;
     cursor: pointer;
-   
+    font-family: inherit;
 }
 
-.product-container h1, .product-name-cart, .order-total h2{
-    color: $font-color-secondary;
-}
-
-.your-cart{
+#your-cart{
     background-color: white;
     margin: 20px;
     width: 200px;
