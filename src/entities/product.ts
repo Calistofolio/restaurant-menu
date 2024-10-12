@@ -7,9 +7,9 @@ export class Product{
     private _productCategory: string;
     private _productImg: string;
     private _quantity: number = 0;
+    private _totalValue = 0;
 
     constructor(productName: string, productPrice: number, productCategory: string, productImg: string){
-        this._id;
         this._productName = productName;
         this._productPrice = productPrice;
         this._productCategory = productCategory;
@@ -33,6 +33,17 @@ export class Product{
     
     public get productName(){
         return this._productName;
+    }
+
+    
+    public get id(){
+        return this._id;
+    }
+    
+
+    
+    public get totalValue(){
+        return  this._totalValue;
     }
 
     toHtml(){
@@ -63,13 +74,24 @@ export class Product{
     const cart = new ShoppingCart();
 
 
-    const addToCartBttn = document.querySelector("#button-add-to-cart");
-    addToCartBttn?.addEventListener("click", () => cart.increaseProductCount(product))
+    const addToCartBttn = productHtml.querySelector("#button-add-to-cart");
+    addToCartBttn?.addEventListener("click", () => this.increaseProductCount())
        
 
     productContainer.appendChild(productHtml);
-
     }
+
+    increaseProductCount() {
+        this.quantity++;
+        ShoppingCart.addToCart(this)
+    }
+
+    decreaseProductCount(product: Product) {
+        product.quantity--;
+        ShoppingCart.orderTotal(product);
+    }
+
+    
 
    
 }
