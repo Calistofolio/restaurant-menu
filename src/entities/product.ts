@@ -39,59 +39,94 @@ export class Product{
     public get id(){
         return this._id;
     }
-    
 
-    
     public get totalValue(){
         return  this._totalValue;
     }
 
     toHtml(){
         const productContainer = document.getElementById("product-list")
-        
         if (!productContainer) return;
 
         const productHtml = document.createElement("li");
         productHtml.id = this._id;
 
         productHtml.innerHTML = `
-        <div class="rounded-xl overflow-hidden flex flex-col border h-[370px] w-[250px] bg-white">
-          <div class="mb-10 relative h-full">
-            <div class=""><img class="h-[100%]" title = "Product Image" src="${this._productImg}" alt=""></div>
-            <button id="button-add-to-cart" type="button" class="button rounded-lg font-semibold"> <div class="fa fa-cart-plus px-1"></div>
-              Add to Cart</button>
-          </div>
+        <div class="rounded-xl flex flex-col h-fit w-[230px]">
+            <div class="rounded-xl mb-10 relative h-[100%]">
+                <div class=""><img class="rounded-xl h-[100%] " title = "Product Image" src="${this._productImg}" alt=""></div>
+                <button id="button-add-to-cart" type="button" class="button rounded-lg font-semibold bg-white border-black border-2">
+                    <div class="fa fa-cart-plus px-1"></div>
+                    <span>Add to Cart</span>
+                </button>
+                <div id="product-selected" class="button rounded-lg font-semibold bg-orange-600">
+                    <button type="button" id="button-reduce-quantity" class="fa fa-minus mx-3"></button>
+                    <span id="selected-quantity" class="mx-4">${this._quantity}</span>
+                    <button id="button-increment-quantity" type="button" class="fa fa-plus mx-3"></button>
+                </div>
+            </div>
 
-          <div class="flex flex-col m-[10px] ">
-            <span class="product-category">${this._productCategory}</span>
-            <span class="product-name">${this._productName}</span>
-            <span class="product-price">$${this._productPrice}</span>
-          </div>
+            <div class="flex flex-col m-[10px] ">
+                <span class="product-category">${this._productCategory}</span>
+                <span class="product-name">${this._productName}</span>
+                <span class="product-price">$${this._productPrice}</span>
+            </div>
         </div>
     `;
 
-    const product = new Product(this._productName, this._productPrice, this._productCategory, this._productImg);
-    const cart = new ShoppingCart();
+   
+
+    
 
 
     const addToCartBttn = productHtml.querySelector("#button-add-to-cart");
     addToCartBttn?.addEventListener("click", () => this.increaseProductCount())
-       
+    const incrementToCartBttn = productHtml.querySelector("#button-increment-quantity");
+    incrementToCartBttn?.addEventListener("click", () => this.increaseProductCount())
+    const reduceFromCartBttn = productHtml.querySelector("#button-reduce-quantity");
+    reduceFromCartBttn?.addEventListener("click", () => this.decreaseProductCount())
+    
 
+    
+    if(!addToCartBttn) return;
+       
+        
     productContainer.appendChild(productHtml);
     }
 
+    productOnCart(element: Element, element2: Element){
+        if(this._quantity > 0){
+            element.classList.add("hidden")
+            element2.classList.remove("hidden")
+        } else{
+            element2.classList.add("hidden")
+            element.classList.remove("hidden")
+        }
+    }
+
+
     increaseProductCount() {
-        this.quantity++;
-        ShoppingCart.addToCart(this)
+        this._quantity++;
+        this.productsTotalValue();
+        ShoppingCart.addToCart(this);
     }
 
-    decreaseProductCount(product: Product) {
-        product.quantity--;
-        ShoppingCart.orderTotal(product);
+    decreaseProductCount() {
+        if (this._quantity > 0) {
+            this._quantity--;
+        }
+        
+        if(this._quantity == 0){
+            ShoppingCart.removeFromCart(this);
+        }
+        
+        this.productsTotalValue();
+        ShoppingCart.calculateTotal();
     }
 
-    
+    productsTotalValue(){
+        this._totalValue = this._productPrice * this._quantity;
+    }
 
    
 }

@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <link rel="stylesheet" href="src/style/index.scss">
   <link
       rel="stylesheet"
@@ -21,42 +21,17 @@
   <h1 class="pt-[70px] pb-[20px] mx-[80px] text-3xl">Desserts</h1>
   <main class="px-20 flex justify-between">
     <ul id="product-list" class="grid grid-cols-3 gap-10">
-      
-
+  
     </ul>
 
+  <div id="your-cart" class="flex flex-col h-fit w-96 p-10 rounded-[10px]">
+    <h2 class="text-2xl font-semibold mb-5">Your Cart (<span id="total-quantity">0</span>)</h2>
+    <ul id="cart-product"></ul>
+    <div class="my-5">Order total <span id="total-value" class="p-10 text-3xl font-bold">$0.00</span></div>
+    <div class="text-center p-3 rounded" id="delivery-information">This is a <strong>carbon-neutral</strong> delivery</div> 
+    <button type="button" class=" rounded-lg font-semibold bg-orange-600">Confirm Order</button>
+    
   
- 
-<!-- 
-  <div class="flex">
-  <div class="product-container">
-    <div><h1>Desserts</h1></div>
-    <div class="relative">
-      <img title= "Product Image" src="/assets/images/image-macaron-desktop.jpg" alt="">
-      <div class="cart-button" onclick="addToCart()"><i class="fa fa-cart-plus"></i>  Add to cart</div>
-    </div> 
-
-    <div Class="product-information">
-      <span class="product-category">Macaron</span>
-      <span class="product-name">Macaron Mix of Five</span>
-      <span class="product-price">8.00</span>
-    </div>
- </div> -->
-
-  <div id="your-cart" class="flex flex-col h-fit p-12">
-    <h2>Your Cart (<span id="total-quantity">0</span>)</h2>
-    <!-- <ul id="cart-product"></ul> -->
-    <!-- <div class="cart-count"><h2>Your Cart (7)</h2></div>
-    <div class="products-in-cart">
-      <div class="product-name-cart">Classic Tiramisu</div>
-      <span>1x</span>
-      <span class="unitary-value">@ $5.50</span>
-      <span class="total-value">$5.50</span>
-    </div>
-    <div class="flex">
-      <div>Order total</div>
-      <h2>$5.50</h2>
-    </div> -->
 </div> 
 </main>
 
