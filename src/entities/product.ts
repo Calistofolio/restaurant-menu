@@ -59,7 +59,7 @@ export class Product{
                     <div class="fa fa-cart-plus px-1"></div>
                     <span>Add to Cart</span>
                 </button>
-                <div id="product-selected" class="button rounded-lg font-semibold bg-orange-600">
+                <div id="product-selected" class="button hidden rounded-lg font-semibold bg-orange-600">
                     <button type="button" id="button-reduce-quantity" class="fa fa-minus mx-3"></button>
                     <span id="selected-quantity" class="mx-4">${this._quantity}</span>
                     <button id="button-increment-quantity" type="button" class="fa fa-plus mx-3"></button>
@@ -80,11 +80,14 @@ export class Product{
 
 
     const addToCartBttn = productHtml.querySelector("#button-add-to-cart");
+    const selectedBttn = productHtml.querySelector("#product-selected")
     addToCartBttn?.addEventListener("click", () => this.increaseProductCount())
+    addToCartBttn?.addEventListener("click", () => this.selectProduct(addToCartBttn, selectedBttn!))
     const incrementToCartBttn = productHtml.querySelector("#button-increment-quantity");
     incrementToCartBttn?.addEventListener("click", () => this.increaseProductCount())
     const reduceFromCartBttn = productHtml.querySelector("#button-reduce-quantity");
     reduceFromCartBttn?.addEventListener("click", () => this.decreaseProductCount())
+    reduceFromCartBttn?.addEventListener("click", () => this.productRemoved(addToCartBttn!, selectedBttn!))
     
 
     
@@ -94,11 +97,13 @@ export class Product{
     productContainer.appendChild(productHtml);
     }
 
-    productOnCart(element: Element, element2: Element){
-        if(this._quantity > 0){
-            element.classList.add("hidden")
-            element2.classList.remove("hidden")
-        } else{
+    selectProduct(element: Element, element2: Element){
+            element.classList.toggle("hidden")
+            element2.classList.toggle("hidden")
+    }
+
+    productRemoved(element: Element, element2: Element){
+        if (this._quantity == 0) {
             element2.classList.add("hidden")
             element.classList.remove("hidden")
         }
