@@ -27,13 +27,22 @@
   <div id="your-cart" class="flex flex-col h-fit w-96 p-10 rounded-[10px]">
     <h2 class="text-2xl font-semibold mb-5">Your Cart (<span id="total-quantity">0</span>)</h2>
     <ul id="cart-product"></ul>
-    <div class="my-5">Order total <span id="total-value" class="p-10 text-3xl font-bold">$0.00</span></div>
+    <div class="my-5">Order total <span id="total-value" class="text-end text-3xl font-bold">$0.00</span></div>
     <div class="text-center p-3 rounded" id="delivery-information">This is a <strong>carbon-neutral</strong> delivery</div> 
-    <button type="button" class=" rounded-lg font-semibold bg-orange-600">Confirm Order</button>
-    
-  
+    <button type="button" id="open-modal" class="p-2 mt-4 rounded-3xl font-semibold bg-color-primary text-background-color">Confirm Order</button>
 </div> 
 </main>
+<div id="modal" class="inset-0 bg-color-secondary fixed bg-opacity-50 justify-center items-center hidden z-50">
+  <div class="flex justify-center items-center w-full h-full ">
+    <div class="bg-background-color w-1/2 p-8 rounded">
+      <i class="fa fa-check-circle-o fa-4x" aria-hidden="true"></i>
+      <h2 class="text-5xl font-bold text-color-secondary">Order Confirmed</h2>
+      <p class="text-color-tertiary">We hope you enjoy your food!</p>
+      <div class="my-5">Order total <span id="total-value-modal" class="text-end text-3xl font-bold">$0.00</span></div>
+      <button id="close-modal" class="p-4 mt-4 w-full rounded-[27px] font-semibold bg-color-primary text-background-color">Start new order</button>
+    </div>
+  </div>
+</div>
 
 <script type="module" src="./src/app.ts"></script>
 </div>

@@ -17,12 +17,16 @@ export class ShoppingCart {
         this.calculateTotal();
     }
 
-    static removeFromCart(product: Product){
+    static removeFromCart(product: Product, element?: Element, element2?: Element){
         const index = this._products.indexOf(product)
         if(index >= 0){
           this._products.splice(index, 1)
           product.quantity = 0
+          
+          element?.classList.toggle("hidden")
+        element2?.classList.toggle("hidden")
         }
+
         this.calculateTotal();
       }
 
@@ -37,7 +41,6 @@ export class ShoppingCart {
         this.toHtml();
     }
 
-
     static toHtml() {
         const cartContainer = document.getElementById("your-cart");
         if (!cartContainer) return;
@@ -50,7 +53,8 @@ export class ShoppingCart {
         const totalValueHtml = cartContainer.querySelector("#total-value")
 
         if (!totalValueHtml) return;
-        totalValueHtml.textContent = this._orderValue.toString();
+        totalValueHtml.innerHTML = "$" + this._orderValue.toFixed(2);
+       
 
         let ulProductsHTML = cartContainer.querySelector("ul")
 
@@ -66,23 +70,30 @@ export class ShoppingCart {
             const productHtml = `
               <span class="product-name">${product.productName}</span>
               <button id="buttom-remove-from-cart" type="button">
-                <div class="fa fa-times-circle-o fa-2x"></div>
+                <div class="fa fa-times-circle-o fa-2x text-color-tertiary"></div>
                </button>
               <div class="border-b-2 py-3">
                 <span>${product.quantity}x</span>
-                <span class="unitary-value px-1">@$${product.productPrice}</span>
-                <span class="total-value">$${product.totalValue}</span>
+                <span class="unitary-value px-1">@$${product.productPrice.toFixed(2)}</span>
+                <span class="total-value ">$${product.totalValue.toFixed(2)}</span>
               </div>
-
              
             `;
 
+          
+         
             liProductHTML.classList.add("pt-5")
             liProductHTML.innerHTML = productHtml;
             ulProductsHTML.appendChild(liProductHTML);
             const rmvToCartBttn = liProductHTML.querySelector("#buttom-remove-from-cart");
             rmvToCartBttn?.addEventListener("click", () => this.removeFromCart(product))
         }
+
+        const modal = document.querySelector("#modal")
+        const btnOpenModal = document.querySelector("#open-modal")
+        const btnCloseModal = document.querySelector("#close-modal")
+        btnOpenModal?.addEventListener("click", () => modal?.classList.remove('hidden'))
+        btnCloseModal?.addEventListener("click", () => modal?.classList.add('hidden'))
 
           cartContainer.insertBefore(ulProductsHTML, totalValueHtml)
         }
